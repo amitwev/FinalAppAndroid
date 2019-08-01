@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">FinalAppAndroid</string>
     <string name="name">Name</string>
+    <string name="car">Car</string>
+    <string name="Number">Number</string>
     <string name="hintName">Your Name</string>
     <string name="hintCar">Your Car</string>
+    <string name="hintNumber">Your Car Number</string>
 
 </resources>
