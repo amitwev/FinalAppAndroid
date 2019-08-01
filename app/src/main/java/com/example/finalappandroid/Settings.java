@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -28,13 +29,16 @@ public class Settings extends AppCompatActivity {
         //init shared prefrences
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mPreferences.edit();
-
         checkDriverDetails();
+
     }
     private void checkDriverDetails(){ //This is for default driver details
-        String nameOfDriver = mPreferences.getString(getString(R.string.name), "Yossi Cohen");
-        String carOfDriver = mPreferences.getString(getString(R.string.car), "Honda");
-        String numberOfDriver = mPreferences.getString(getString(R.string.Number), "11-222-33");
+        String nameOfDriver = mPreferences.getString("editName", "Yossi Cohen");
+        String carOfDriver = mPreferences.getString("editCar", "Honda");
+        String numberOfDriver = mPreferences.getString("editNumber", "11-222-33");
+        Log.d(this.toString(),"on create name " + nameOfDriver);
+        Log.d(this.toString(), "on create car " + carOfDriver);
+        Log.d(this.toString() , "on create number " + numberOfDriver);
 
     }
 
@@ -44,15 +48,15 @@ public class Settings extends AppCompatActivity {
         //Save details in shared preferences
         //Save the name
         String driverStringName = driverName.getText().toString();
-        mEditor.putString(getString(R.string.name), driverStringName);
+        mEditor.putString("editName", driverStringName);
         mEditor.commit();
         //Save the car
         String driverStringCar = driverCar.getText().toString();
-        mEditor.putString(getString(R.string.name), driverStringCar);
+        mEditor.putString("editCar", driverStringCar);
         mEditor.commit();
         //Save the Number
         String driverStringNumber = driverCarNumber.getText().toString();
-        mEditor.putString(getString(R.string.name), driverStringNumber);
+        mEditor.putString("editNumber", driverStringNumber);
         mEditor.commit();
 
     }
