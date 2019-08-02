@@ -48,7 +48,7 @@
 
 
         <EditText
-            android:id="@+id/editName"
+            android:id="@+id/editTextDriverName"
             android:layout_width="255dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -83,7 +83,7 @@
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/editCar"
+            android:id="@+id/editTextDriverCar"
             android:layout_width="229dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -108,7 +108,7 @@
             android:textSize="30sp" />
 
         <EditText
-            android:id="@+id/editNumber"
+            android:id="@+id/editTextdriverCarNumber"
             android:layout_width="12dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

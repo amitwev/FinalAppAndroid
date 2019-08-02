@@ -17,7 +17,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             DatabaseContact.DriverTable.COL_NAME_DRIVER_CAR_TYPE+ TEXT_TYPE + COMMA_SEP +
             DatabaseContact.DriverTable.COL_NAME_DRIVER_CAR_NUMBER + TEXT_TYPE  + ")";
     private static final String SQL_DELETE_DRIVER_TABLE =
-            "DROP TABLE IF EXIST " + DatabaseContact.DriverTable.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + DatabaseContact.DriverTable.TABLE_NAME;
 
 
     MyDatabaseHelper(Context context){

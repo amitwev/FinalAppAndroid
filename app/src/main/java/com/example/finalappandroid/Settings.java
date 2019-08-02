@@ -8,14 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+
 public class Settings extends AppCompatActivity {
     //Shared prefrences vars
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
     // settings vars
-    EditText driverName;
-    EditText driverCar;
-    EditText driverCarNumber;
+    EditText editTextDriverName;
+    EditText editTextDriverCar;
+    EditText editTextdriverCarNumber;
 
 
     @Override
@@ -23,41 +26,79 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        driverName = findViewById(R.id.editName);
-        driverCar = findViewById(R.id.editCar);
-        driverCarNumber = findViewById(R.id.editNumber);
+        editTextDriverName = findViewById(R.id.editTextDriverName);
+        editTextDriverCar = findViewById(R.id.editTextDriverCar);
+        editTextdriverCarNumber = findViewById(R.id.editTextdriverCarNumber);
         //init shared prefrences
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mPreferences.edit();
-        checkDriverDetails();
+        Log.d(this.toString(), "end of on create method");
+    }
+    protected void onStart(){
+        super.onStart();
+        loadDriverDetailsOnStart();
+        Log.d(this.toString(), "end of on start");
 
     }
-    private void checkDriverDetails(){ //This is for default driver details
+    protected void onStop(){
+        super.onStop();
+        saveDetailsToSharedPrefrence();
+        Log.d(this.toString(), "end of on Stop");
+    }
+
+    private void loadDriverDetailsOnStart(){ //This is for default driver details -> first time use
         String nameOfDriver = mPreferences.getString("editName", "Yossi Cohen");
+        editTextDriverName.setText(nameOfDriver);
         String carOfDriver = mPreferences.getString("editCar", "Honda");
+        editTextDriverCar.setText(carOfDriver);
         String numberOfDriver = mPreferences.getString("editNumber", "11-222-33");
+        editTextdriverCarNumber.setText(numberOfDriver);
         Log.d(this.toString(),"on create name " + nameOfDriver);
         Log.d(this.toString(), "on create car " + carOfDriver);
         Log.d(this.toString() , "on create number " + numberOfDriver);
+    }
+
+    public boolean validateDriverDetails(){
+        //TODO need to add  validation to car number
+        AwesomeValidation mAwesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        mAwesomeValidation.addValidation(this, R.id.editTextDriverName, "[a-zA-Z\\s]+",R.string.errorDriverName);
+        mAwesomeValidation.addValidation(this, R.id.editTextDriverCar, "[a-zA-Z\\s]+",R.string.errorDriverName);
+        mAwesomeValidation.addValidation(this, R.id.editTextdriverCarNumber, "",R.string.errorDriverName);
+        if(mAwesomeValidation.validate()){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 
-    public void saveDriverDetails(View v){
-        //Here is the function for the 'save' button to save the driver details- parameters save in the params above
+    public void saveDriverDetails(View v){//Function to save to user details after clicked on 'save' button
+        //TODO need to validate the user input - using awesome validation
+        //TODO create function for success and failed
+        //TODO need to save driver details in DB?
+        Log.d(this.toString(), "inside the save driver details");
+        if(validateDriverDetails()){
+            Log.d(this.toString(),"inside true in tha validation -> saving the details");
+            saveDetailsToSharedPrefrence();
+        }else{
+            Log.d(this.toString(), "inside the false in the validation");
+            //TODO add error here for the validation
+        }
+    }
 
-        //Save details in shared preferences
-        //Save the name
-        String driverStringName = driverName.getText().toString();
-        mEditor.putString("editName", driverStringName);
+    public void saveDetailsToSharedPrefrence(){
+        //Declare paramas
+        String driverStringName = editTextDriverName.getText().toString();
+        String driverStringCar = editTextDriverCar.getText().toString();
+        String driverStringNumber = editTextdriverCarNumber.getText().toString();
+        //Save driver name
+        mEditor.putString("editName",driverStringName);
         mEditor.commit();
         //Save the car
-        String driverStringCar = driverCar.getText().toString();
         mEditor.putString("editCar", driverStringCar);
         mEditor.commit();
         //Save the Number
-        String driverStringNumber = driverCarNumber.getText().toString();
         mEditor.putString("editNumber", driverStringNumber);
         mEditor.commit();
-
     }
 }
