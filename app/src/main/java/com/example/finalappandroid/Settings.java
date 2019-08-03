@@ -1,15 +1,22 @@
 package com.example.finalappandroid;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationHolder;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.custom.CustomErrorReset;
+import com.basgeekball.awesomevalidation.utility.custom.CustomValidation;
+import com.basgeekball.awesomevalidation.utility.custom.CustomValidationCallback;
 
 public class Settings extends AppCompatActivity {
     //Shared prefrences vars
@@ -47,23 +54,23 @@ public class Settings extends AppCompatActivity {
     }
 
     private void loadDriverDetailsOnStart(){ //This is for default driver details -> first time use
-        String nameOfDriver = mPreferences.getString("editName", "Yossi Cohen");
+        String nameOfDriver = mPreferences.getString("currentNameOfDriver", "Yossi Cohen");
         editTextDriverName.setText(nameOfDriver);
-        String carOfDriver = mPreferences.getString("editCar", "Honda");
+        String carOfDriver = mPreferences.getString("currentCarOfDriver", "Honda");
         editTextDriverCar.setText(carOfDriver);
-        String numberOfDriver = mPreferences.getString("editNumber", "11-222-33");
+        String numberOfDriver = mPreferences.getString("currentNumberOfDriver", "11-222-33");
         editTextdriverCarNumber.setText(numberOfDriver);
         Log.d(this.toString(),"on create name " + nameOfDriver);
         Log.d(this.toString(), "on create car " + carOfDriver);
         Log.d(this.toString() , "on create number " + numberOfDriver);
     }
-
-    public boolean validateDriverDetails(){
+     public boolean validateDriverDetails(){
         //TODO need to add  validation to car number
         AwesomeValidation mAwesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         mAwesomeValidation.addValidation(this, R.id.editTextDriverName, "[a-zA-Z\\s]+",R.string.errorDriverName);
-        mAwesomeValidation.addValidation(this, R.id.editTextDriverCar, "[a-zA-Z\\s]+",R.string.errorDriverName);
-        mAwesomeValidation.addValidation(this, R.id.editTextdriverCarNumber, "",R.string.errorDriverName);
+        mAwesomeValidation.addValidation(this, R.id.editTextDriverCar, "[a-zA-Z\\s]+",R.string.errorDriverCar);
+        mAwesomeValidation.addValidation(this, R.id.editTextdriverCarNumber, "^[0-9]{2,3}[-]{1}[0-9]{2,3}[-]{1}[0-9]{2,3}$",R.string.errorDriverCarNumber);
+        //validateCarNumber(mAwesomeValidation);
         if(mAwesomeValidation.validate()){
             return true;
         }else{
@@ -73,7 +80,6 @@ public class Settings extends AppCompatActivity {
     }
 
     public void saveDriverDetails(View v){//Function to save to user details after clicked on 'save' button
-        //TODO need to validate the user input - using awesome validation
         //TODO create function for success and failed
         //TODO need to save driver details in DB?
         Log.d(this.toString(), "inside the save driver details");
@@ -82,7 +88,6 @@ public class Settings extends AppCompatActivity {
             saveDetailsToSharedPrefrence();
         }else{
             Log.d(this.toString(), "inside the false in the validation");
-            //TODO add error here for the validation
         }
     }
 
@@ -92,13 +97,13 @@ public class Settings extends AppCompatActivity {
         String driverStringCar = editTextDriverCar.getText().toString();
         String driverStringNumber = editTextdriverCarNumber.getText().toString();
         //Save driver name
-        mEditor.putString("editName",driverStringName);
+        mEditor.putString("currentNameOfDriver",driverStringName);
         mEditor.commit();
         //Save the car
-        mEditor.putString("editCar", driverStringCar);
+        mEditor.putString("currentCarOfDriver", driverStringCar);
         mEditor.commit();
         //Save the Number
-        mEditor.putString("editNumber", driverStringNumber);
+        mEditor.putString("currentNumberOfDriver", driverStringNumber);
         mEditor.commit();
     }
 }

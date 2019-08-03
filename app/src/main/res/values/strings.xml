@@ -7,4 +7,6 @@
     <string name="hintCar">Your Car</string>
     <string name="hintNumber">Your Car Number</string>
     <string name="errorDriverName">Name is invalid</string>
+    <string name="errorDriverCar">Car name is invalid</string>
+    <string name="errorDriverCarNumber">Number is invalid</string>
 </resources>

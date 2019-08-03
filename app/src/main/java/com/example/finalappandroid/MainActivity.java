@@ -2,7 +2,6 @@ package com.example.finalappandroid;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,14 +22,29 @@ public class MainActivity extends AppCompatActivity {
         dbWrite = myDbHelper.getWritableDatabase();
 
 
-
         /////Move to Settings button
-        Button buttonOne = findViewById(R.id.buttonTest);
-        buttonOne.setOnClickListener(new View.OnClickListener() {
+        Button settingsButton = findViewById(R.id.moveSettings);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.out.println("Button Clicked");
-
+                System.out.println("Settings Button Clicked");
                 Intent activity2Intent = new Intent(getApplicationContext(), Settings.class);
+                startActivity(activity2Intent);
+            }
+        });
+        Button lastParkingButton = findViewById(R.id.moveLastParking);
+        lastParkingButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                System.out.println("last parking button click");
+                Intent activity2Intent = new Intent(getApplicationContext(),LastParking.class);
+                startActivity(activity2Intent);
+            }
+        });
+
+        Button saveParking = findViewById(R.id.moveToSaveLocation);
+        saveParking.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                System.out.println("save parking button click");
+                Intent activity2Intent = new Intent(getApplicationContext(),SaveCurrentLocation.class);
                 startActivity(activity2Intent);
             }
         });
