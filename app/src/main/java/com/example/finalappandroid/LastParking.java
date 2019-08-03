@@ -23,7 +23,6 @@ public class LastParking extends AppCompatActivity {
 
     }
     private void loadDriverDetails(){
-        //TODO add the collage spot to shared pref
         TextView nameInput = findViewById(R.id.driverNameInput);
         TextView carInput = findViewById(R.id.driverCarInput);
         TextView numberInput = findViewById(R.id.driverNumberInput);

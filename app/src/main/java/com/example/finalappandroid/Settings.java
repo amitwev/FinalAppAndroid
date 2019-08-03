@@ -65,7 +65,6 @@ public class Settings extends AppCompatActivity {
         Log.d(this.toString() , "on create number " + numberOfDriver);
     }
      public boolean validateDriverDetails(){
-        //TODO need to add  validation to car number
         AwesomeValidation mAwesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         mAwesomeValidation.addValidation(this, R.id.editTextDriverName, "[a-zA-Z\\s]+",R.string.errorDriverName);
         mAwesomeValidation.addValidation(this, R.id.editTextDriverCar, "[a-zA-Z\\s]+",R.string.errorDriverCar);
