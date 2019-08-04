@@ -9,4 +9,6 @@
     <string name="errorDriverName">Name is invalid</string>
     <string name="errorDriverCar">Car name is invalid</string>
     <string name="errorDriverCarNumber">Number is invalid</string>
+    <string name="save">Save Location</string>
+    <string name="updateLocation">Update Location</string>
 </resources>
