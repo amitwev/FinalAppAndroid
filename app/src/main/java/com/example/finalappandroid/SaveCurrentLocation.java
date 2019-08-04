@@ -29,23 +29,19 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_current_location);
         webViewContent = findViewById(R.id.webViewContact);
+        Log.d(this.toString(), "web view = "  + webViewContent);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         //TODO add here something that related to package uses and permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d(this.toString(), "inside the if");
             // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            //  ActivityCompat#requestPermissions
             return;
 
         }
         Log.d(this.toString(), "before the location manager");
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5*1000, 10, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, THREE_MIN_UPDATE, 10, this);
         Log.d(this.toString(), "After the location manager");
         Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         loadGoogleMaps(lastKnownLocation, webViewContent);
@@ -58,15 +54,15 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
     public void onLocationChanged(Location location) {
         Log.d(this.toString(), "inside the on location change");
         double longitude = location.getLongitude();
-        double latitude = location.getAltitude();
+        double latitude = location.getLatitude();
         Log.d(this.toString(), "Location changed to long: " + latitude + ", alti: "+ longitude);
 
     }
     public void loadGoogleMaps(Location location, WebView webView){
         Log.d(this.toString(), "inside load google maps");
-        double alatitude = location.getAltitude();
+        double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-        String googleUrl = "https://www.google.com/maps/place/"+alatitude+","+longitude;
+        String googleUrl = "https://www.google.com/maps/place/"+latitude+","+longitude;
         webView.loadUrl(googleUrl);
         Log.d(this.toString(), "finish load the google maps page");
     }
@@ -83,7 +79,7 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
 
     @Override
     public void onProviderDisabled(String provider) {
-        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+        //startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 
     }
 }
