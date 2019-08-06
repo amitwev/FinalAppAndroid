@@ -29,6 +29,12 @@
             android:layout_width="251dp"
             android:layout_height="49dp"
             android:text="moveToSaveLocation" />
+
+        <Button
+            android:id="@+id/moveToLocationHistory"
+            android:layout_width="279dp"
+            android:layout_height="wrap_content"
+            android:text="move to location history" />
     </LinearLayout>
 
 </LinearLayout>

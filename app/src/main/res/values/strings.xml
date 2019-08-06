@@ -11,4 +11,5 @@
     <string name="errorDriverCarNumber">Number is invalid</string>
     <string name="save">Save Location</string>
     <string name="updateLocation">Update Location</string>
+    <string name="deleteLocationList">Delete All Locations</string>
 </resources>

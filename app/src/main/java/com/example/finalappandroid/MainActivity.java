@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    MyDatabaseHelper myDbHelper;
+    MyDatabaseHelper myDBHelper;
     SQLiteDatabase dbRead;
     SQLiteDatabase dbWrite;
 
@@ -17,9 +17,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myDbHelper = new MyDatabaseHelper(this);
-        dbRead =  myDbHelper.getReadableDatabase();
-        dbWrite = myDbHelper.getWritableDatabase();
+        myDBHelper = new MyDatabaseHelper(this);
+        dbRead =  myDBHelper.getReadableDatabase();
+        dbWrite = myDBHelper.getWritableDatabase();
+        myDBHelper.onCreate(dbWrite);
 
 
         /////Move to Settings button
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(activity2Intent);
             }
         });
+        // Move to last parking
         Button lastParkingButton = findViewById(R.id.moveLastParking);
         lastParkingButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -39,12 +41,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(activity2Intent);
             }
         });
-
+        // move to save parking
         Button saveParking = findViewById(R.id.moveToSaveLocation);
         saveParking.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 System.out.println("save parking button click");
                 Intent activity2Intent = new Intent(getApplicationContext(),SaveCurrentLocation.class);
+                startActivity(activity2Intent);
+            }
+        });
+        //move to location history
+        Button locationHistory = findViewById(R.id.moveToLocationHistory);
+        locationHistory.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                System.out.println("location history button click");
+                Intent activity2Intent = new Intent(getApplicationContext(), ParkingHistory.class);
                 startActivity(activity2Intent);
             }
         });
