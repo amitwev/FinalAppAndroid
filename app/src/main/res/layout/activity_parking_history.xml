@@ -8,23 +8,28 @@
     tools:context=".ParkingHistory" >
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/deleteAllDataButton"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
+        android:onClick="deleteAllData"
         android:text="@string/deleteLocationList" />
 
     <TableLayout
+        android:id="@+id/historyTable"
         android:layout_width="395dp"
         android:layout_height="715dp"
         android:layout_marginTop="60dp"
-        android:background="#999999"
-        >
+        android:background="#999999">
 
         <TableRow
+            android:id="@+id/firstTableRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/tableborder">
+            android:background="@drawable/tableborder"
+            android:gravity="center">
+
             <TextView
+                android:id="@+id/textViewForInit"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -45,6 +50,7 @@
                 android:text="Longitude"
                 android:textStyle="bold" />
         </TableRow>
+
 
     </TableLayout>
 </RelativeLayout>

@@ -59,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(activity2Intent);
             }
         });
+        Button parkingAroundMe = findViewById( R.id.parkingAroundMeButton );
+        parkingAroundMe.setOnClickListener( new View.OnClickListener(){
+            public void onClick(View v) {
+                System.out.println( "parking around me button click" );
+                Intent activity2Intent = new Intent( getApplicationContext(), ParkingAroundMe.class );
+                startActivity( activity2Intent );
+            }
+        } );
     }
     protected void onStart() {
         super.onStart();
