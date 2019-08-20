@@ -12,4 +12,27 @@
     <string name="save">Save Location</string>
     <string name="updateLocation">Update Location</string>
     <string name="deleteLocationList">Delete All Locations</string>
+    <string name="titleForPopUpSuccess">Success</string>
+    <string name="titleForPopUpFailed">Failed!</string>
+    <string name="messageForPopUpSuccess">Your details saved successfully!</string>
+    <string name="messageForPopUpFailed">Your details did not saved! Please try again!</string>
+
+    <string name="messageForPopUpSaveLocationFalied">Unable to save your location, it might be that already saved or encounter any issue! Please try again or check history!</string>
+
+    <string name="lastParking">Last Parking</string>
+    <string name="saveLocation">Save New Location</string>
+    <string name="parkingHistory">Show Parking History</string>
+    <string name="parkingAroundMe">Parking Around Me</string>
+    <string name="developers">developers</string>
+    <string name="settings">settings</string>
+
+
+    <string name="amitTitle">Amit Salim</string>
+    <string name="amitDescription">Android Studio Developer</string>
+    <string name="country">Israel</string>
+    <string name="amitJob">Computer Software</string>
+    <string name="amitStudies">B.Sc in Information Technology</string>
+    <string name="amitdesc1">Like to develop and learn new techs</string>
+    <string name="amitID">ID: 204001705</string>
+    <string name="summary">Summary</string>
 </resources>

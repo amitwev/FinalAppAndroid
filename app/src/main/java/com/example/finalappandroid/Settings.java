@@ -1,8 +1,10 @@
 package com.example.finalappandroid;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationHolder;
@@ -79,17 +82,28 @@ public class Settings extends AppCompatActivity {
     }
 
     public void saveDriverDetails(View v){//Function to save to user details after clicked on 'save' button
-        //TODO create function for success and failed
-        //TODO need to save driver details in DB?
         Log.d(this.toString(), "inside the save driver details");
         if(validateDriverDetails()){
             Log.d(this.toString(),"inside true in tha validation -> saving the details");
             saveDetailsToSharedPrefrence();
+            popupMessage(true);
         }else{
+            popupMessage(false);
             Log.d(this.toString(), "inside the false in the validation");
         }
     }
-
+    private void popupMessage(Boolean isSuccess){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if(isSuccess){
+            builder.setTitle(R.string.titleForPopUpSuccess);
+            builder.setMessage(R.string.messageForPopUpSuccess);
+        }else{
+            builder.setTitle(R.string.titleForPopUpFailed);
+            builder.setMessage(R.string.messageForPopUpFailed);
+        }
+        builder.setCancelable(true);
+        builder.show();
+    }
     public void saveDetailsToSharedPrefrence(){
         //Declare paramas
         String driverStringName = editTextDriverName.getText().toString();

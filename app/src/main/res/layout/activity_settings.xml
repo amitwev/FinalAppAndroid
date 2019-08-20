@@ -7,37 +7,27 @@
     android:orientation="vertical"
     tools:context=".Settings" >
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="53dp" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Settings"
         android:textSize="30sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="92dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="3dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="1"
         android:orientation="horizontal">
-
-        <Space
-            android:layout_width="66dp"
-            android:layout_height="68dp"
-            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/nameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="@string/name"
             android:textSize="30sp" />
 
@@ -64,15 +54,11 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Space
-            android:layout_width="42dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
         <TextView
             android:id="@+id/carLabel"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="@string/car"
             android:textSize="30sp" />

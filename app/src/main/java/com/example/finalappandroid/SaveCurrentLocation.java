@@ -2,6 +2,7 @@ package com.example.finalappandroid;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -12,13 +13,17 @@ import android.location.LocationManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.view.Menu;
+import android.widget.Toast;
 
 public class SaveCurrentLocation extends AppCompatActivity implements LocationListener {
     private LocationManager locationManager;
@@ -30,6 +35,15 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
     private SQLiteDatabase dbRead;
     static {
         THREE_MIN_UPDATE = 180000;
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent nextActivity = new Intent(this,ParkingHistory.class);
+        startActivity(nextActivity);
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -69,7 +83,25 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
         }else{
             Log.d(this.toString(), "inside the else -> no need to save location -> already saved");
         }
-
+    }
+    private void popupMessage(Boolean isSuccess){
+        Log.d(this.toString(), "inside popup message for the user in save location, message to show = " + isSuccess);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if(isSuccess){
+            builder.setTitle(R.string.titleForPopUpSuccess);
+            builder.setMessage(R.string.messageForPopUpSuccess);
+        }else{
+            builder.setTitle(R.string.titleForPopUpFailed);
+            builder.setMessage(R.string.messageForPopUpSaveLocationFalied);
+        }
+        builder.setCancelable(true);
+//        builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(getApplicationContext(), "Neutral button clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        builder.show();
     }
     public Location renderLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -83,6 +115,7 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
     }
 
     private boolean isNeedToSaveCurrentLocation(){
+        Log.d(this.toString(), "inside is need to save current location function ");
         Location currentLocationFromGPS = renderLocation();
         String[] culomns = {DatabaseContact.LocationHistory.COLUMN_NAME_LOCATION_ID,
                             DatabaseContact.LocationHistory.COLUMN_NAME_LATITUDE,
@@ -95,8 +128,12 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
                 sortLocation,
                 "1"
         );
-        result.moveToFirst();
+        //last db Location is = 32.1012657, 34.86733096
+        //latit                 32.1012657, 34.86733096
         if(result.getCount() > 0) {
+            result.moveToFirst();
+            Log.d(this.toString(), "last db Location is = " + result.getDouble(1) + ", " + result.getDouble(2));
+            Log.d(this.toString(), "current location of GPS = latit" + currentLocationFromGPS.getLatitude() + ", longi =" + currentLocationFromGPS.getLongitude());
             if (result.getDouble( 1 ) == currentLocationFromGPS.getLatitude() && result.getDouble( 2 ) == currentLocationFromGPS.getLongitude()) {
                 Log.d( this.toString(), "inside the true for the if checking ident" );
                 return false;
@@ -111,6 +148,7 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
         saveCurrentLocation();
     }
     public void saveCurrentLocation(){
+        Log.d(this.toString(), "inside the save cuurent location function");
         //TODO add here save to DB
         long rowIdForNewInsert;
         Location nowLocation = renderLocation();
@@ -119,8 +157,18 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
         cv.put(DatabaseContact.LocationHistory.COLUMN_NAME_LATITUDE, nowLocation.getLatitude());
         cv.put(DatabaseContact.LocationHistory.COLUMN_NAME_LONGITUDE, nowLocation.getLongitude());
         // insert to DB
-        rowIdForNewInsert = dbWrite.insert(DatabaseContact.LocationHistory.TABLE_NAME, null, cv);
-        Log.d(this.toString(), "new row = " + rowIdForNewInsert);
+        boolean messageToShow;
+        if(isNeedToSaveCurrentLocation()){
+            Log.d(this.toString(), "inisde the if for saving the current location");
+            rowIdForNewInsert = dbWrite.insert(DatabaseContact.LocationHistory.TABLE_NAME, null, cv);
+            Log.d(this.toString(), "new row = " + rowIdForNewInsert);
+            messageToShow = true;
+        }else{
+            Log.d(this.toString(), "inisde the else for saving the current location");
+            messageToShow = false;
+        }
+        popupMessage(messageToShow);
+
     }
     @Override
     public void onLocationChanged(Location location){

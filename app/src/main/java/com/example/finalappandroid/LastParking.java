@@ -1,5 +1,6 @@
 package com.example.finalappandroid;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,10 +8,13 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.view.Menu;
 
 public class LastParking extends AppCompatActivity {
     private SharedPreferences mPreferences;
@@ -19,7 +23,17 @@ public class LastParking extends AppCompatActivity {
     private SQLiteDatabase dbRead;
     private String longitude;
     private String latitude;
-    @Override
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent nextActivity = new Intent(this,SaveCurrentLocation.class);
+        startActivity(nextActivity);
+        return super.onOptionsItemSelected(item);
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_last_parking);
@@ -69,9 +83,11 @@ public class LastParking extends AppCompatActivity {
         );
         result.moveToFirst();
         if(result.getCount() > 0){
+            Log.d(this.toString(), "inside the if in the set location for google maps");
             latitude = result.getString( 1 );
             longitude = result.getString( 2 );
         }else{
+            Log.d(this.toString(), "inside the else in the set location for google maps");
             latitude = mPreferences.getString("longtitude", "32.047732");
             longitude = mPreferences.getString("latitude", "34.761187");
         }

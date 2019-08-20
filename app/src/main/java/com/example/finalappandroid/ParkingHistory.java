@@ -1,15 +1,18 @@
 package com.example.finalappandroid;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.view.Menu;
 
 public class ParkingHistory extends AppCompatActivity {
     private MyDatabaseHelper myDatabaseHelper;
@@ -18,6 +21,16 @@ public class ParkingHistory extends AppCompatActivity {
     private String sortLocationString;
     private String[] returnCulomnsFromDB;
     private Cursor allData;
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent nextActivity = new Intent(this,  ParkingAroundMe.class);
+        startActivity(nextActivity);
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.example.finalappandroid;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,9 +9,13 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.view.Menu;
+
+import java.util.Set;
 
 public class ParkingAroundMe extends AppCompatActivity {
     private WebView webViewContent;
@@ -19,7 +24,25 @@ public class ParkingAroundMe extends AppCompatActivity {
     private String latitude;
     private String longitude;
     private SharedPreferences mPreferences;
-    @Override
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menuparking, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent nextActivity;
+        Log.d(this.toString(), "the menu item id = " + item.getItemId());
+        int devScreen = 2131230786;
+        if(item.getItemId() == devScreen){
+            nextActivity = new Intent(this, Team.class);
+        }else{
+            nextActivity = new Intent(this, Settings.class);
+        }
+        startActivity(nextActivity);
+        return super.onOptionsItemSelected(item);
+    }
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_around_me);
