@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.widget.Toast;
 
 public class SaveCurrentLocation extends AppCompatActivity implements LocationListener {
+    private LocationListener locationListener;
     private LocationManager locationManager;
     private static final int THREE_MIN_UPDATE;
     private WebView webViewContent;
@@ -71,6 +72,7 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, THREE_MIN_UPDATE, 0, this);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1, 1, this);
         lastKnownLocation = renderLocation();
+        Log.d(this.toString(), "the current location = " + lastKnownLocation + ", lati = " + lastKnownLocation.getLatitude() + ", longi = " + lastKnownLocation.getLongitude());
         loadGoogleMaps(lastKnownLocation);
     }
     public void onStop() {
@@ -104,11 +106,23 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
         builder.show();
     }
     public Location renderLocation() {
+        Location loc = new Location("dummyprovider");
+        Log.d(this.toString(),"inside render location");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return null;
+
         }
         lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        return lastKnownLocation;
+        Log.d(this.toString(), "last known location = " + lastKnownLocation);
+        if(lastKnownLocation == null){
+            Log.d(this.toString(), "inside render location -> location is null");
+            loc.setLatitude(34.761187);
+            loc.setLongitude(32.047732);
+            return loc;
+        }else{
+            Log.d(this.toString(), "inside render location -> location not null-> return device location");
+            return lastKnownLocation;
+        }
+
     }
     public void updateCurrentLocation(View v){
         onLocationChanged(renderLocation());
