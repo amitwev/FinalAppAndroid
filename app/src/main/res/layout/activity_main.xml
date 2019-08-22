@@ -7,40 +7,76 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/moveSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="move to settings " />
-
-        <Button
-            android:id="@+id/moveLastParking"
-            android:layout_width="234dp"
-            android:layout_height="45dp"
-            android:text="Move to LastParking" />
-
-        <Button
-            android:id="@+id/moveToSaveLocation"
-            android:layout_width="251dp"
-            android:layout_height="49dp"
-            android:text="moveToSaveLocation" />
-
-        <Button
-            android:id="@+id/moveToLocationHistory"
-            android:layout_width="279dp"
-            android:layout_height="wrap_content"
-            android:text="move to location history" />
-
-        <Button
-            android:id="@+id/parkingAroundMeButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="parking around me " />
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="10sp"
+                android:text="@string/ParkingAPP"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/review" />
+
+            <TextView
+                android:id="@+id/menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/menu"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/moveSettings"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/Settings" />
+
+            <Button
+                android:id="@+id/moveLastParking"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/Last_Parking" />
+
+            <Button
+                android:id="@+id/moveToSaveLocation"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/SaveLocation" />
+
+            <Button
+                android:id="@+id/moveToLocationHistory"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/HistoryLocation" />
+
+            <Button
+                android:id="@+id/parkingAroundMeButton"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/parkingaroundme" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="346dp"
+                android:fitsSystemWindows="true"
+                app:srcCompat="@drawable/download" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

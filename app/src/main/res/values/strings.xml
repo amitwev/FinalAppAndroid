@@ -1,4 +1,16 @@
 <resources>
+    <string name="ParkingAPP">Parking APP</string>
+    <string name="review">Displays a real-time snapshot of all nearby parking options: Parking Information. The app offers a navigation option for the closest parking near the destination using Google Maps</string>
+    <string name="menu">Menu</string>
+    <string name="Settings">Settings</string>
+    <string name="Last_Parking">Last Parking</string>
+    <string name="SaveLocation">Save Location</string>
+    <string name="HistoryLocation">Location History</string>
+    <string name="Team">Team</string>
+    <string name="main">main</string>
+
+
+    <string name="parkingaroundme">Parking Around Me</string>
     <string name="app_name">FinalAppAndroid</string>
     <string name="name">Name</string>
     <string name="car">Car</string>

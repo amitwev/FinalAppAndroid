@@ -11,7 +11,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.provider.ContactsContract;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,15 +35,6 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
     private SQLiteDatabase dbRead;
     static {
         THREE_MIN_UPDATE = 180000;
-    }
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent nextActivity = new Intent(this,ParkingHistory.class);
-        startActivity(nextActivity);
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -208,4 +198,56 @@ public class SaveCurrentLocation extends AppCompatActivity implements LocationLi
 //        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 //        startActivity(intent);
     }
+
+    //Start Menu
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings1) {
+            Toast.makeText( this, "Last Parking page", Toast.LENGTH_SHORT ).show();
+            Intent activity1Intent = new Intent( getApplicationContext(), LastParking.class );
+            startActivity( activity1Intent );
+
+
+        } else if (id == R.id.action_settings2) {
+            Toast.makeText( this, "Current Location page", Toast.LENGTH_SHORT ).show();
+            Intent activity2Intent = new Intent( getApplicationContext(), SaveCurrentLocation.class );
+            startActivity( activity2Intent );
+
+
+        } else if (id == R.id.action_settings3) {
+            Toast.makeText( this, "Parking History page", Toast.LENGTH_SHORT ).show();
+            Intent activity3Intent = new Intent( getApplicationContext(), ParkingHistory.class );
+            startActivity( activity3Intent );
+
+
+        } else if (id == R.id.action_settings4) {
+            Toast.makeText( this, "parking around me page", Toast.LENGTH_SHORT ).show();
+            Intent activity4Intent = new Intent( getApplicationContext(), ParkingAroundMe.class );
+            startActivity( activity4Intent );
+
+
+        } else if (id == R.id.action_settings5) {
+            Toast.makeText( this, "Settings page", Toast.LENGTH_SHORT ).show();
+            Intent activity5Intent = new Intent( getApplicationContext(), Settings.class );
+            startActivity( activity5Intent );
+
+        } else if (id == R.id.action_settings6) {
+            Toast.makeText( this, "Team page", Toast.LENGTH_SHORT ).show();
+            Intent activity6Intent = new Intent( getApplicationContext(), Team.class );
+            startActivity( activity6Intent );
+
+        } else if (id == R.id.action_settings) {
+            Toast.makeText( this, "MAIN page", Toast.LENGTH_SHORT ).show();
+            Intent activityIntent = new Intent( getApplicationContext(), MainActivity.class );
+            startActivity( activityIntent );
+
+        }
+        return super.onOptionsItemSelected( item );
+    }
+
+    //END Menu
 }

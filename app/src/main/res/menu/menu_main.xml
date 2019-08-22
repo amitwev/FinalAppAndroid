@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings5"
+        android:title="@string/Settings"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_settings6"
+        android:title="@string/Team"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/main"></item>
+    <item
+        android:id="@+id/action_settings1"
+        android:title="@string/Last_Parking"></item>
+    <item
+        android:id="@+id/action_settings2"
+        android:title="@string/SaveLocation"></item>
+    <item
+        android:id="@+id/action_settings3"
+        android:title="@string/HistoryLocation"></item>
+    <item
+        android:id="@+id/action_settings4"
+        android:title="@string/parkingaroundme">
+    </item>
+
+</menu>

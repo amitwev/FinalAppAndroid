@@ -20,14 +20,15 @@
         <activity android:name=".ParkingHistory" />
         <activity android:name=".SaveCurrentLocation" />
         <activity android:name=".Settings" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LastParking">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LastParking" />
+
+
     </application>
 
 </manifest>
