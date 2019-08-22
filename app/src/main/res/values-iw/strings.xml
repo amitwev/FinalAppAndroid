@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">פרוייקט גמר חניה</string>
+    <string name="name">שם</string>
+    <string name="car">רכב</string>
+    <string name="number">מספר</string>
+    <string name="Last_Parking">חניה אחרונה</string>
+    <string name="hintName">שמך</string>
+    <string name="hintCar">רכבך</string>
+    <string name="hintNumber">מספר רכב</string>
+    <string name="Settings">הגדרות</string>
+    <string name="errorDriverName">שם לא תקין</string>
+    <string name="errorDriverCar">שם רכב לא תקין</string>
+    <string name="errorDriverCarNumber">מספר רכב לא תקין</string>
+    <string name="save">שמירה</string>
+    <string name="updateLocation">עדכון מיקום</string>
+    <string name="deleteLocationList">מחיקה של המיקומים</string>
+    <string name="SaveLocation"> שמירת מיקום</string>
+    <string name="HistoryLocation">היסטוריית מיקומים</string>
+    <string name="parkingaroundme">חניה מסביבי</string>
+    <string name="ParkingAPP">אפליקציה לחניה</string>
+    <string name="menu">תפריט</string>
+    <string name="review">מציג תמונת מצב בזמן אמת על כלל אפשרויות החניה בקרבת היעד: מידע על חניונים. האפליקציה מציעה אפשרות ניווט לחניה הכי קרובה הסמוכה ליעד באמצעות גוגל מפות
+</string>
+    <string name="Team">צוות</string>
+    <string name="main">ראשי</string>
+
+</resources>

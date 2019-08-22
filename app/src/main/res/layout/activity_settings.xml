@@ -7,14 +7,20 @@
     android:orientation="vertical"
     tools:context=".Settings" >
 
-    <TextView
-        android:id="@+id/textView8"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Settings"
-        android:textSize="30sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Settings"
+            android:textSize="30sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,20 +33,16 @@
             android:id="@+id/nameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:text="@string/name"
             android:textSize="30sp" />
-
-        <Space
-            android:layout_width="58dp"
-            android:layout_height="61dp"
-            android:layout_weight="1" />
 
 
         <EditText
             android:id="@+id/editTextDriverName"
             android:layout_width="255dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:ems="10"
             android:hint="@string/hintName"
             android:inputType="textPersonName"
@@ -58,20 +60,16 @@
             android:id="@+id/carLabel"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="@string/car"
             android:textSize="30sp" />
-
-        <Space
-            android:layout_width="43dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/editTextDriverCar"
             android:layout_width="229dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/hintCar"
@@ -89,6 +87,7 @@
             android:id="@+id/NumberLabel"
             android:layout_width="10dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="@string/number"
             android:textSize="30sp" />
@@ -104,15 +103,17 @@
             android:textSize="30sp" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="93dp" />
-
-    <Button
-        android:id="@+id/saveSettingsButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="saveDriverDetails"
-        android:text="Save" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/saveSettingsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="saveDriverDetails"
+            android:text="Save" />
+    </LinearLayout>
 
 </LinearLayout>
